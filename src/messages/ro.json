@@ -1,0 +1,102 @@
+{
+  "home": {
+    "title": "Fitness Flacăra - Sala de Fitness Premium în Moldova",
+    "subtitle": "Transformă-ți viața cu echipamente de ultimă generație, antrenori profesioniști și o comunitate motivată.",
+    "cta": "Începe Acum",
+    "hero": {
+      "headline": "FITNESS FLACĂRA",
+      "subtitle": "Promovăm cultura modului de viață sănătos prin",
+      "excellence": "excelență și inovație",
+      "cta_primary": "Înscrie-te Acum",
+      "cta_secondary": "Descoperă Mai Mult"
+    },
+    "about": {
+      "title": "Despre Noi",
+      "subtitle": "Antrenamentele cultivă stilul nostru zilnic",
+      "description": "prin disciplină și regimul de viață sănătos. Antrenamentele în sala de forță nu numai îmbunătățesc starea de sănătate și starea de spirit, dar și",
+      "highlight": "contribuie la atingerea multor obiective personale!",
+      "services": [
+        {
+          "title": "Sală de Antrenament",
+          "description": "Zone cardio și săli pentru antrenamente în grup cu echipamente de ultimă generație"
+        },
+        {
+          "title": "Facilități Premium",
+          "description": "Tenis de masă, Squash, Zid de cățărare, Teren pentru Crossfit în aer liber, Teren pentru Volley"
+        },
+        {
+          "title": "SPA & Wellness",
+          "description": "Bazin, Cameră salină, Salon de frumusețe, Fitness Bar și facilități complete de relaxare"
+        }
+      ]
+    },
+    "membership": {
+      "title": "Abonamente",
+      "subtitle": "Premium",
+      "plans": [
+        {
+          "name": "50 de vizite",
+          "price": "5000",
+          "description": "Flexibilitate maximă",
+          "features": ["Acces la sală", "Zone cardio", "Facilități de bază"]
+        },
+        {
+          "name": "Abonament Anual",
+          "price": "10000",
+          "description": "Acces nelimitat", 
+          "features": ["Tot din planul anterior", "Acces SPA complet", "Salon de frumusețe", "Prioritate rezervări"]
+        },
+        {
+          "name": "100 de vizite",
+          "price": "8000", 
+          "description": "Cea mai bună valoare",
+          "features": ["Tot din planul anterior", "Acces grup clase", "Program personalizat", "Consultant fitness"]
+        }
+      ],
+      "cta": "Alege Planul",
+      "popular": "POPULAR"
+    },
+    "contact": {
+      "title": "Gata să-ți",
+      "subtitle": "Transformi Viața?",
+      "description": "Alătură-te miilor de membri mulțumiți care și-au atins obiectivele de fitness la Fitness Flacăra",
+      "cta_primary": "Înscrie-te Acum!",
+      "cta_secondary": "Contactează-ne",
+      "info": [
+        {
+          "title": "Locație",
+          "value": "Ion Creanga 49"
+        },
+        {
+          "title": "Telefon",
+          "value": "+373 (78) 171700\n(022) 999 555"
+        },
+        {
+          "title": "Program",
+          "value": "Zile lucrătoare: 7:00-22:00\nSâmbătă: 8:00-21:00\nDuminica: 8:00-19:00"
+        }
+      ]
+    },
+    "scroll": "Scroll"
+  },
+  "nav": {
+    "home": "Acasă",
+    "about": "Despre",
+    "trainers": "Antrenori",
+    "schedule": "Orar",
+    "contact": "Contact"
+  },
+  "facilities": {
+    "pool": "Bazin Olimpic",
+    "spa": "Centru SPA",
+    "strength": "Zona Forță",
+    "cardio": "Zona Cardio",
+    "group": "Săli Clase de Grup"
+  },
+  "footer": {
+    "address": "Str. Fitness 123, Chișinău, Moldova",
+    "hours": "L-V: 06:00-23:00, S-D: 08:00-22:00",
+    "phone": "+373 22 123 456",
+    "rights": "© 2025 Fitness Flacăra. Toate drepturile rezervate."
+  }
+}

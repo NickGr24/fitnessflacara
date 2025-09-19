@@ -1,0 +1,33 @@
+import type { Metadata } from 'next';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import Header from '../../components/Header';
+import SmoothScroll from '../../components/smooth-scroll';
+
+export const metadata: Metadata = {
+  title: "Fitness Flacăra - Cea mai modernă sală de fitness din Moldova",
+  description: "Transformă-ți viața cu echipamente de ultimă generație, antrenori profesioniști și o comunitate motivată la Fitness Flacăra.",
+  keywords: "fitness, sala sport, antrenori, abonamente, Moldova, Chisinau, bazin, SPA, cardio, forta",
+};
+
+export default async function LocaleLayout({
+  children,
+  params
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const messages = await getMessages();
+
+  return (
+    <NextIntlClientProvider messages={messages}>
+      <SmoothScroll>
+        <Header />
+        <main>
+          {children}
+        </main>
+      </SmoothScroll>
+    </NextIntlClientProvider>
+  );
+}

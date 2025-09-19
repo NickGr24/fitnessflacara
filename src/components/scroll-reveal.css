@@ -1,0 +1,142 @@
+/* Scroll Reveal Animations */
+
+/* Base styles for reveal elements */
+[data-reveal] {
+  will-change: opacity, transform;
+  transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), 
+              transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Initial hidden states */
+[data-reveal="up"] {
+  opacity: 0;
+  transform: translateY(36px);
+}
+
+[data-reveal="zoom"] {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+[data-reveal="left"] {
+  opacity: 0;
+  transform: translateX(-36px);
+}
+
+[data-reveal="right"] {
+  opacity: 0;
+  transform: translateX(36px);
+}
+
+/* Visible states when in view */
+[data-reveal].is-inview {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger delay for gallery items */
+[data-reveal]:nth-child(1) { transition-delay: 0ms; }
+[data-reveal]:nth-child(2) { transition-delay: 80ms; }
+[data-reveal]:nth-child(3) { transition-delay: 160ms; }
+[data-reveal]:nth-child(4) { transition-delay: 240ms; }
+[data-reveal]:nth-child(5) { transition-delay: 320ms; }
+[data-reveal]:nth-child(6) { transition-delay: 400ms; }
+[data-reveal]:nth-child(7) { transition-delay: 480ms; }
+[data-reveal]:nth-child(8) { transition-delay: 560ms; }
+[data-reveal]:nth-child(9) { transition-delay: 640ms; }
+[data-reveal]:nth-child(10) { transition-delay: 720ms; }
+
+/* Reset delays when in view to avoid stacking */
+[data-reveal].is-inview {
+  transition-delay: 0ms;
+}
+
+/* Smooth image loading without layout shift */
+.gallery-item img {
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 400ms ease-out;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    transition: none;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  .gallery-item img {
+    transition: none;
+  }
+  
+  .gallery-item:hover img {
+    transform: none;
+  }
+}
+
+/* Loading state for images */
+.gallery-item {
+  background: linear-gradient(135deg, 
+    rgba(26, 26, 26, 0.8) 0%, 
+    rgba(10, 10, 10, 0.8) 100%);
+}
+
+/* Smooth loading animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.gallery-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gallery-item:not(.loaded)::before {
+  opacity: 1;
+}
+
+/* Premium hover effects */
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 180, 255, 0.1) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.gallery-item:hover::after {
+  opacity: 1;
+}

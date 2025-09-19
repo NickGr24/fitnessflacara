@@ -1,0 +1,215 @@
+/* Wipe/Mask Reveal Animations */
+
+:root {
+  --reveal-duration: 720ms;
+  --reveal-stagger: 100ms;
+  --reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --reveal-mask-color: #0a0a0a;
+  --reveal-image-scale: 1.02;
+  --reveal-image-translate: 6px;
+}
+
+/* Base reveal container */
+.reveal {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  will-change: transform;
+}
+
+/* Image base styling */
+.reveal img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transform: scale(var(--reveal-image-scale)) translateY(var(--reveal-image-translate));
+  transition: transform var(--reveal-duration) var(--reveal-ease);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Mask overlay */
+.reveal__mask {
+  position: absolute;
+  inset: 0;
+  background: var(--reveal-mask-color);
+  will-change: transform, clip-path;
+  transition: transform var(--reveal-duration) var(--reveal-ease),
+              clip-path var(--reveal-duration) var(--reveal-ease);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  z-index: 10;
+}
+
+/* Initial mask states for different wipe directions */
+.reveal[data-wipe="left"] .reveal__mask {
+  transform-origin: left center;
+  transform: scaleX(1);
+}
+
+.reveal[data-wipe="right"] .reveal__mask {
+  transform-origin: right center;
+  transform: scaleX(1);
+}
+
+.reveal[data-wipe="up"] .reveal__mask {
+  transform-origin: center top;
+  transform: scaleY(1);
+}
+
+.reveal[data-wipe="down"] .reveal__mask {
+  transform-origin: center bottom;
+  transform: scaleY(1);
+}
+
+/* Alternative clip-path approach for smoother animations */
+.reveal[data-wipe="left"].use-clippath .reveal__mask {
+  transform: none;
+  clip-path: inset(0 0 0 0);
+}
+
+.reveal[data-wipe="right"].use-clippath .reveal__mask {
+  transform: none;
+  clip-path: inset(0 0 0 0);
+}
+
+.reveal[data-wipe="up"].use-clippath .reveal__mask {
+  transform: none;
+  clip-path: inset(0 0 0 0);
+}
+
+.reveal[data-wipe="down"].use-clippath .reveal__mask {
+  transform: none;
+  clip-path: inset(0 0 0 0);
+}
+
+/* In-view states - mask disappears, image settles */
+.reveal.is-inview img {
+  transform: scale(1) translateY(0);
+}
+
+/* Transform-based reveals */
+.reveal.is-inview[data-wipe="left"] .reveal__mask,
+.reveal.is-inview[data-wipe="right"] .reveal__mask {
+  transform: scaleX(0);
+}
+
+.reveal.is-inview[data-wipe="up"] .reveal__mask,
+.reveal.is-inview[data-wipe="down"] .reveal__mask {
+  transform: scaleY(0);
+}
+
+/* Clip-path based reveals (fallback/alternative) */
+.reveal.is-inview[data-wipe="left"].use-clippath .reveal__mask {
+  clip-path: inset(0 100% 0 0);
+}
+
+.reveal.is-inview[data-wipe="right"].use-clippath .reveal__mask {
+  clip-path: inset(0 0 0 100%);
+}
+
+.reveal.is-inview[data-wipe="up"].use-clippath .reveal__mask {
+  clip-path: inset(100% 0 0 0);
+}
+
+.reveal.is-inview[data-wipe="down"].use-clippath .reveal__mask {
+  clip-path: inset(0 0 100% 0);
+}
+
+/* Stagger delays - applied via JS */
+.reveal[style*="transition-delay"] {
+  --stagger-delay: 0ms;
+}
+
+.reveal img,
+.reveal__mask {
+  transition-delay: var(--stagger-delay, 0ms);
+}
+
+/* Loading state for progressive enhancement */
+.reveal.loading .reveal__mask {
+  background: linear-gradient(
+    90deg,
+    var(--reveal-mask-color) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    var(--reveal-mask-color) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-mask 2s infinite ease-in-out;
+}
+
+@keyframes shimmer-mask {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .reveal img,
+  .reveal__mask {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .reveal img {
+    transform: scale(1) translateY(0) !important;
+  }
+  
+  .reveal__mask {
+    transform: scaleX(0) scaleY(0) !important;
+    clip-path: inset(100% 100% 100% 100%) !important;
+    opacity: 0 !important;
+  }
+}
+
+/* Dark theme adjustments */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --reveal-mask-color: #0a0a0a;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .reveal__mask {
+    background: black;
+  }
+}
+
+/* Print styles - show all images */
+@media print {
+  .reveal__mask {
+    display: none !important;
+  }
+  
+  .reveal img {
+    transform: none !important;
+  }
+}
+
+/* Premium hover effect for revealed images */
+.reveal.is-inview:hover img {
+  transform: scale(1.05) translateY(-2px);
+  transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Focus states for accessibility */
+.reveal:focus-within {
+  outline: 2px solid #00b4ff;
+  outline-offset: 2px;
+}
+
+/* Ensure proper layering */
+.reveal {
+  isolation: isolate;
+}
+
+/* GPU optimization hints */
+.reveal,
+.reveal img,
+.reveal__mask {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}

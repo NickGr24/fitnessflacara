@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://fitnessflacara.md/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
+
+# Block specific paths
+Disallow: /_next/
+Disallow: /api/
+Disallow: /admin/
+Disallow: /studio/
+
+# Allow important pages
+Allow: /
+Allow: /ru
+Allow: /ro
+Allow: /ru/despre
+Allow: /ro/despre
+Allow: /ru/contact
+Allow: /ro/contact
+Allow: /ru/antrenori
+Allow: /ro/antrenori
